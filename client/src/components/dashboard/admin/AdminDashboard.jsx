@@ -281,28 +281,28 @@ const AdminDashboard = ({ token }) => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/login");
-      };
+    };
 
     return (
         <div>
             <div className='header mb-5'>
-        <h4>Admin Dashboard</h4>
-        <div className='profile'>
-          <h4>Hi, Admin!</h4>
-          <img src={Avatar} alt="avatar" className='profile-img' />
-          <Dropdown>
-            <Dropdown.Toggle variant='danger' id="dropdown-basic" className='profile-dropdown'>
-              <Gear />
-            </Dropdown.Toggle>
+                <h4>Admin Dashboard</h4>
+                <div className='profile'>
+                    <h4>Hi, Admin!</h4>
+                    <img src={Avatar} alt="avatar" className='profile-img' />
+                    <Dropdown>
+                        <Dropdown.Toggle variant='danger' id="dropdown-basic" className='profile-dropdown'>
+                            <Gear />
+                        </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item>My Profile</Dropdown.Item>
-              <Dropdown.Item>Set Admin Account</Dropdown.Item>
-              <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-      </div>
+                        <Dropdown.Menu>
+                            <Dropdown.Item>My Profile</Dropdown.Item>
+                            <Dropdown.Item>Set Admin Account</Dropdown.Item>
+                            <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+            </div>
             <div className="container mt-4">
                 <div className='button-group'>
                     <Button
