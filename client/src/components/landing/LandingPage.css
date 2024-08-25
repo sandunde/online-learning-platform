@@ -1,0 +1,54 @@
+.landing-screen {
+    padding: 0px;
+}
+
+.background-img {
+    width  : 100%;
+    height : 100vh;
+    display: block;
+}
+
+.landing-content {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    gap            : 5px;
+    padding        : 20px;
+    text-align     : center;
+}
+
+.btns {
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+}
+
+.btns button {
+    width: 300px;
+}
+
+.register-btn {
+    background-color: white;
+    color           : black;
+}
+
+.social-icons {
+    display  : flex;
+    gap      : 20px;
+    font-size: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .landing-screen {
+        text-align: center;
+    }
+
+    .background-img {
+        height: 50vh;
+    }
+
+    .landing-content {
+        padding: 10px;
+    }
+}

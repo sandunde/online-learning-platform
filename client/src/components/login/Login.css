@@ -1,0 +1,9 @@
+.login-btn {
+    margin-top: 20px;
+    width: 300px;
+}
+
+.register-section{
+    display: flex;
+    gap: 5px;
+}
