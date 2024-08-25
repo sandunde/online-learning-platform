@@ -1,7 +1,6 @@
 import { Button, Container, Form, Row, Col, Alert } from "react-bootstrap";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Facebook, Google, Instagram, TwitterX } from "react-bootstrap-icons";
 import Class from "../../assets/loginClass.jpg";
 import "./Login.css";
 

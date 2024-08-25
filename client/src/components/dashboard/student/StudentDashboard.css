@@ -1,0 +1,22 @@
+.header {
+    display    : flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-img {
+    height       : 50px;
+    border-radius: 50%;
+    border       : 1px solid;
+}
+
+.profile-dropdown{
+    background-color: transparent;
+    color: black;
+}

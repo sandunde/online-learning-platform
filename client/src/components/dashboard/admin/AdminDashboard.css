@@ -1,0 +1,16 @@
+.button-group {
+    display        : flex;
+    gap            : 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.button-group button {
+    width: 300px;
+}
+
+.active-button {
+    background-color: transparent;
+    color           : black;
+    border-color    : #007bff;
+}

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, Dropdown } from 'react-bootstrap';
 import StudentsTable from './StudentTable';
 import CoursesTable from './CourseTable';
 import EnrollmentTable from './EnrollmentTable';
+import "./AdminDashboard.css"
+import { Gear } from 'react-bootstrap-icons';
+import Avatar from "../../../assets/female.jpg"
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = ({ token }) => {
     const [activeTab, setActiveTab] = useState('students');
@@ -18,7 +22,7 @@ const AdminDashboard = ({ token }) => {
     const [isEditingCourse, setIsEditingCourse] = useState(false);
     const [enrollmentsList, setEnrollmentsList] = useState([]);
     const [isEditingEnrollment, setIsEditingEnrollment] = useState(false);
-    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchStudentsData = async () => {
@@ -93,7 +97,7 @@ const AdminDashboard = ({ token }) => {
             ? `http://localhost:5001/api/students/${currentStudent._id}`
             : "http://localhost:5001/api/students";
         const method = isEditingStudent ? 'PUT' : 'POST';
-    
+
         try {
             const response = await fetch(url, {
                 method: method,
@@ -103,20 +107,20 @@ const AdminDashboard = ({ token }) => {
                 },
                 body: JSON.stringify(currentStudent),
             });
-    
+
             if (response.ok) {
                 const updatedStudent = await response.json();
-    
+
                 setStudentsList(prevStudentsList => {
                     if (isEditingStudent) {
-                        return prevStudentsList.map(student => 
+                        return prevStudentsList.map(student =>
                             student._id === updatedStudent._id ? updatedStudent : student
                         );
                     } else {
                         return [...prevStudentsList, updatedStudent];
                     }
                 });
-    
+
                 setShowStudentModal(false);
                 setCurrentStudent({ name: '', email: '', password: '' });
             } else {
@@ -127,13 +131,13 @@ const AdminDashboard = ({ token }) => {
             console.error("Error:", error.message);
         }
     };
-    
+
     const handleAddOrUpdateCourse = async () => {
         const url = isEditingCourse
             ? `http://localhost:5001/api/courses/${currentCourse._id}`
             : "http://localhost:5001/api/courses";
         const method = isEditingCourse ? 'PUT' : 'POST';
-    
+
         try {
             const response = await fetch(url, {
                 method: method,
@@ -274,12 +278,52 @@ const AdminDashboard = ({ token }) => {
         setShowEnrollmentModal(true);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+      };
+
     return (
         <div>
+            <div className='header mb-5'>
+        <h4>Admin Dashboard</h4>
+        <div className='profile'>
+          <h4>Hi, Admin!</h4>
+          <img src={Avatar} alt="avatar" className='profile-img' />
+          <Dropdown>
+            <Dropdown.Toggle variant='danger' id="dropdown-basic" className='profile-dropdown'>
+              <Gear />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item>My Profile</Dropdown.Item>
+              <Dropdown.Item>Set Admin Account</Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      </div>
             <div className="container mt-4">
-                <Button variant="primary" onClick={() => setActiveTab('students')}>Students</Button>
-                <Button variant="primary" onClick={() => setActiveTab('courses')} className="ms-2">Courses</Button>
-                <Button variant="primary" onClick={() => setActiveTab('enrollments')} className="ms-2">Enrollments</Button>
+                <div className='button-group'>
+                    <Button
+                        className={activeTab === 'students' ? 'active-button' : ''}
+                        onClick={() => setActiveTab('students')}
+                    >
+                        Students
+                    </Button>
+                    <Button
+                        className={activeTab === 'courses' ? 'active-button' : ''}
+                        onClick={() => setActiveTab('courses')}
+                    >
+                        Courses
+                    </Button>
+                    <Button
+                        className={activeTab === 'enrollments' ? 'active-button' : ''}
+                        onClick={() => setActiveTab('enrollments')}
+                    >
+                        Enrollments
+                    </Button>
+                </div>
                 {activeTab === 'students' && (
                     <>
                         <StudentsTable

@@ -6,10 +6,10 @@ const CoursesTable = ({ coursesList, openCourseModal, handleDeleteCourse }) => {
     <Table striped bordered hover responsive>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Level</th>
-          <th>Description</th>
-          <th>Actions</th>
+          <th style={{ width: '25%' }}>Name</th>
+          <th style={{ width: '15%' }}>Level</th>
+          <th style={{ width: '40%' }}>Description</th>
+          <th style={{ width: '20%' }}>Actions</th>
         </tr>
       </thead>
       <tbody>

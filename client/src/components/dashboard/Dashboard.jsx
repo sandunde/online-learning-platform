@@ -53,16 +53,11 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   if (!user) return null;
 
   return (
     <Container className="mt-5">
-      <Row>
+      {/* <Row>
         <Col className="d-flex justify-content-between align-items-center">
           {user.role === "admin" ? (
             <h1 className="text-center">Admin Dashboard</h1>
@@ -73,7 +68,7 @@ const Dashboard = () => {
             Logout
           </Button>
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col>
           {user.role === "admin" ? (
